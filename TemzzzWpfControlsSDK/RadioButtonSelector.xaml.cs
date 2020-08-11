@@ -101,8 +101,6 @@ namespace TemzzzWpfControlsSDK
 
         public List<(string, string)> RadioButtonTextToReadOnlyTextMap
         {
-            get => (List<(string, string)>)GetValue(
-                RadioButtonTextToReadOnlyTextMapProperty);
             set => SetValue(RadioButtonTextToReadOnlyTextMapProperty, value);
         }
 
