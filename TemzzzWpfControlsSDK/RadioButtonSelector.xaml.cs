@@ -24,6 +24,7 @@ namespace TemzzzWpfControlsSDK
 
         private static readonly
             DependencyProperty CheckedRadioButtonIndexProperty;
+        public static readonly DependencyProperty EditableTextProperty;
 
         #endregion
 
@@ -34,6 +35,11 @@ namespace TemzzzWpfControlsSDK
             CheckedRadioButtonIndexProperty = DependencyProperty.Register(
                 nameof(CheckedRadioButtonIndex), typeof(int?),
                 typeof(RadioButtonSelector), new PropertyMetadata(null));
+
+            EditableTextProperty = DependencyProperty.Register(
+                nameof(EditableText), typeof(string),
+                typeof(RadioButtonSelector),
+                new PropertyMetadata(string.Empty));
         }
 
         public RadioButtonSelector()
@@ -49,6 +55,12 @@ namespace TemzzzWpfControlsSDK
         {
             get => (int?)GetValue(CheckedRadioButtonIndexProperty);
             set => SetValue(CheckedRadioButtonIndexProperty, value);
+        }
+
+        public string EditableText
+        {
+            get => (string)GetValue(EditableTextProperty);
+            set => SetValue(EditableTextProperty, value);
         }
 
         #endregion
