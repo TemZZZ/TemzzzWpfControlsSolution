@@ -157,7 +157,8 @@ namespace TemzzzWpfControlsSDK
 
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            _readOnlyTextBlock.Text =
+                _radioButtonToReadOnlyTextMap[(RadioButton)sender];
         }
 
         private Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
