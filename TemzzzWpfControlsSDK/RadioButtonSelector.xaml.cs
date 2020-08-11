@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TemzzzWpfControlsSDK
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for RadioButtonSelector.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class RadioButtonSelector : UserControl
     {
-        public UserControl1()
+        public RadioButtonSelector()
         {
             InitializeComponent();
         }
