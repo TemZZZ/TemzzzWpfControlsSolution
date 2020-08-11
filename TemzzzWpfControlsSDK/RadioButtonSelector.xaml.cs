@@ -59,7 +59,8 @@ namespace TemzzzWpfControlsSDK
 
             IsEditableTextBoxVisibleProperty = DependencyProperty.Register(
                 nameof(IsEditableTextBoxVisible), typeof(bool),
-                typeof(RadioButtonSelector), new PropertyMetadata(true));
+                typeof(RadioButtonSelector), new PropertyMetadata(true,
+                    EditableTextBoxVisibilityChangedCallback));
 
             RadioButtonTextToReadOnlyTextMapProperty = DependencyProperty
                 .Register(nameof(RadioButtonTextToReadOnlyTextMap),
@@ -221,6 +222,28 @@ namespace TemzzzWpfControlsSDK
                     break;
                 case false:
                     radioButtonSelector._readOnlyTextBlock.Visibility
+                        = Visibility.Collapsed;
+                    break;
+            }
+        }
+
+        private static void EditableTextBoxVisibilityChangedCallback(
+            DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue == e.NewValue)
+            {
+                return;
+            }
+
+            var radioButtonSelector = (RadioButtonSelector)sender;
+            switch (e.NewValue)
+            {
+                case true:
+                    radioButtonSelector._editableTextBox.Visibility
+                        = Visibility.Visible;
+                    break;
+                case false:
+                    radioButtonSelector._editableTextBox.Visibility
                         = Visibility.Collapsed;
                     break;
             }
