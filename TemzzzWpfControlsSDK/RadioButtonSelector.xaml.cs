@@ -54,7 +54,8 @@ namespace TemzzzWpfControlsSDK
 
             IsReadOnlyTextBlockVisibleProperty = DependencyProperty.Register(
                 nameof(IsReadOnlyTextBlockVisible), typeof(bool),
-                typeof(RadioButtonSelector), new PropertyMetadata(true));
+                typeof(RadioButtonSelector), new PropertyMetadata(true,
+                    ReadOnlyTextBlockVisibleChanged));
 
             IsEditableTextBoxVisibleProperty = DependencyProperty.Register(
                 nameof(IsEditableTextBoxVisible), typeof(bool),
@@ -200,6 +201,28 @@ namespace TemzzzWpfControlsSDK
             if (newCheckedRadioButton.IsChecked != true)
             {
                 newCheckedRadioButton.IsChecked = true;
+            }
+        }
+
+        private static void ReadOnlyTextBlockVisibleChanged(
+            DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue == e.NewValue)
+            {
+                return;
+            }
+
+            var radioButtonSelector = (RadioButtonSelector)sender;
+            switch (e.NewValue)
+            {
+                case true:
+                    radioButtonSelector._readOnlyTextBlock.Visibility
+                        = Visibility.Visible;
+                    break;
+                case false:
+                    radioButtonSelector._readOnlyTextBlock.Visibility
+                        = Visibility.Collapsed;
+                    break;
             }
         }
 
