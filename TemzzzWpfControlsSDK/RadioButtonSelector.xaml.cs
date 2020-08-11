@@ -20,9 +20,37 @@ namespace TemzzzWpfControlsSDK
     /// </summary>
     public partial class RadioButtonSelector : UserControl
     {
+        #region -- Private dependency properties --
+
+        private static readonly
+            DependencyProperty CheckedRadioButtonIndexProperty;
+
+        #endregion
+
+        #region -- Constructors --
+
+        static RadioButtonSelector()
+        {
+            CheckedRadioButtonIndexProperty = DependencyProperty.Register(
+                nameof(CheckedRadioButtonIndex), typeof(int?),
+                typeof(RadioButtonSelector), new PropertyMetadata(null));
+        }
+
         public RadioButtonSelector()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region -- Public properties --
+
+        public int? CheckedRadioButtonIndex
+        {
+            get => (int?)GetValue(CheckedRadioButtonIndexProperty);
+            set => SetValue(CheckedRadioButtonIndexProperty, value);
+        }
+
+        #endregion
     }
 }
