@@ -188,7 +188,8 @@ namespace TemzzzWpfControlsSDK
             {
                 throw new ArgumentException(
                     "There are no radiobuttons yet. Radiobuttons count " +
-                    "must be more or equal to 1.");
+                    "must be more or equal to 1.",
+                    nameof(newCheckedRadioButtonIndex));
             }
 
             if (newCheckedRadioButtonIndex < 0
