@@ -62,7 +62,8 @@ namespace TemzzzWpfControlsSDK
             RadioButtonTextToReadOnlyTextMapProperty = DependencyProperty
                 .Register(nameof(RadioButtonTextToReadOnlyTextMap),
                     typeof(List<(string, string)>),
-                    typeof(RadioButtonSelector), new PropertyMetadata(true));
+                    typeof(RadioButtonSelector),
+                    new PropertyMetadata(new List<(string, string)>()));
         }
 
         public RadioButtonSelector()
