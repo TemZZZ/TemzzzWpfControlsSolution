@@ -184,6 +184,13 @@ namespace TemzzzWpfControlsSDK
                 return;
             }
 
+            if (radioButtonsStackPanelChildren.Count == 0)
+            {
+                throw new ArgumentException(
+                    "There are no radiobuttons yet. Radiobuttons count " +
+                    "must be more or equal to 1.");
+            }
+
             if (newCheckedRadioButtonIndex < 0
                 || (newCheckedRadioButtonIndex
                     >= radioButtonsStackPanelChildren.Count))
