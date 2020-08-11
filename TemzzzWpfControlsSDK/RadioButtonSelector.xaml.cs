@@ -55,7 +55,7 @@ namespace TemzzzWpfControlsSDK
             IsReadOnlyTextBlockVisibleProperty = DependencyProperty.Register(
                 nameof(IsReadOnlyTextBlockVisible), typeof(bool),
                 typeof(RadioButtonSelector), new PropertyMetadata(true,
-                    ReadOnlyTextBlockVisibleChanged));
+                    ReadOnlyTextBlockVisibilityChanged));
 
             IsEditableTextBoxVisibleProperty = DependencyProperty.Register(
                 nameof(IsEditableTextBoxVisible), typeof(bool),
@@ -204,7 +204,7 @@ namespace TemzzzWpfControlsSDK
             }
         }
 
-        private static void ReadOnlyTextBlockVisibleChanged(
+        private static void ReadOnlyTextBlockVisibilityChanged(
             DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             if (e.OldValue == e.NewValue)
