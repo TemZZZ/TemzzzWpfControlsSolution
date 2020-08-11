@@ -5,8 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TemzzzWpfControlsSDK"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="50" d:DesignWidth="275">
+
+    <UserControl.Resources>
+        <Style x:Key="DefaultStyle">
+            <Setter Property="Control.Margin" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="RadioButton" BasedOn="{StaticResource DefaultStyle}"></Style>
+            </StackPanel.Resources>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource DefaultStyle}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource DefaultStyle}"/>
     </Grid>
 </UserControl>
