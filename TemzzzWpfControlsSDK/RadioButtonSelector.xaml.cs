@@ -63,7 +63,8 @@ namespace TemzzzWpfControlsSDK
                 .Register(nameof(RadioButtonTextToReadOnlyTextMap),
                     typeof(List<(string, string)>),
                     typeof(RadioButtonSelector),
-                    new PropertyMetadata(new List<(string, string)>()));
+                    new PropertyMetadata(new List<(string, string)>(),
+                        RadioButtonTextToReadOnlyTextMapChangedCallback));
         }
 
         public RadioButtonSelector()
@@ -105,5 +106,61 @@ namespace TemzzzWpfControlsSDK
         }
 
         #endregion
+
+        #region -- Dependency property changed callbacks --
+
+        private static void RadioButtonTextToReadOnlyTextMapChangedCallback(
+            DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue == e.NewValue)
+            {
+                return;
+            }
+
+            var radioButtonSelector = (RadioButtonSelector)sender;
+            var radioButtonsStackPanelChildren
+                = radioButtonSelector._radioButtonsStackPanel.Children;
+
+            foreach (RadioButton radioButton
+                in radioButtonsStackPanelChildren)
+            {
+                radioButton.Checked
+                    -= radioButtonSelector.OnRadioButtonChecked;
+            }
+            radioButtonsStackPanelChildren.Clear();
+            radioButtonSelector._radioButtonToReadOnlyTextMap.Clear();
+
+            var newRadioButtonTextToReadOnlyTextMap
+                = (List<(string, string)>)e.NewValue;
+            if (newRadioButtonTextToReadOnlyTextMap is null
+                || newRadioButtonTextToReadOnlyTextMap.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var (radioButtonText, readOnlyText)
+                in newRadioButtonTextToReadOnlyTextMap)
+            {
+                var radioButton = new RadioButton
+                {
+                    Content = radioButtonText
+                };
+                radioButton.Checked
+                    += radioButtonSelector.OnRadioButtonChecked;
+                radioButtonSelector._radioButtonToReadOnlyTextMap[
+                    radioButton] = readOnlyText;
+                radioButtonsStackPanelChildren.Add(radioButton);
+            }
+        }
+
+        #endregion
+
+        private void OnRadioButtonChecked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
+            = new Dictionary<RadioButton, string>();
     }
 }
