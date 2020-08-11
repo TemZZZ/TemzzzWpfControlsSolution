@@ -46,6 +46,9 @@
                  Grid.Row="1"
                  Grid.Column="1"
                  VerticalAlignment="Center"
-                 Style="{StaticResource DefaultStyle}"/>
+                 Style="{StaticResource DefaultStyle}"
+                 Text="{Binding RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type local:RadioButtonSelector}},
+                        Path=EditableText}"/>
     </Grid>
 </UserControl>
