@@ -33,6 +33,9 @@ namespace TemzzzWpfControlsSDK
         public static readonly
             DependencyProperty IsEditableTextBoxVisibleProperty;
 
+        public static readonly
+            DependencyProperty RadioButtonTextToReadOnlyTextMapProperty;
+
         #endregion
 
         #region -- Constructors --
@@ -55,6 +58,11 @@ namespace TemzzzWpfControlsSDK
             IsEditableTextBoxVisibleProperty = DependencyProperty.Register(
                 nameof(IsEditableTextBoxVisible), typeof(bool),
                 typeof(RadioButtonSelector), new PropertyMetadata(true));
+
+            RadioButtonTextToReadOnlyTextMapProperty = DependencyProperty
+                .Register(nameof(RadioButtonTextToReadOnlyTextMap),
+                    typeof(List<(string, string)>),
+                    typeof(RadioButtonSelector), new PropertyMetadata(true));
         }
 
         public RadioButtonSelector()
@@ -88,6 +96,13 @@ namespace TemzzzWpfControlsSDK
         {
             get => (bool)GetValue(IsEditableTextBoxVisibleProperty);
             set => SetValue(IsEditableTextBoxVisibleProperty, value);
+        }
+
+        public List<(string, string)> RadioButtonTextToReadOnlyTextMap
+        {
+            get => (List<(string, string)>)GetValue(
+                RadioButtonTextToReadOnlyTextMapProperty);
+            set => SetValue(RadioButtonTextToReadOnlyTextMapProperty, value);
         }
 
         #endregion
