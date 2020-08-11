@@ -9,7 +9,8 @@
 
     <UserControl.Resources>
         <Style x:Key="DefaultStyle">
-            <Setter Property="Control.Margin" Value="3"/>
+            <Setter Property="Control.Margin"
+                    Value="3"/>
         </Style>
     </UserControl.Resources>
 
@@ -23,13 +24,28 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+        <StackPanel Name="_radioButtonsStackPanel"
+                    x:FieldModifier="private"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Center">
             <StackPanel.Resources>
-                <Style TargetType="RadioButton" BasedOn="{StaticResource DefaultStyle}"></Style>
+                <Style TargetType="RadioButton"
+                       BasedOn="{StaticResource DefaultStyle}"/>
             </StackPanel.Resources>
         </StackPanel>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource DefaultStyle}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource DefaultStyle}"/>
+        <TextBlock Name="_readOnlyTextBlock"
+                   x:FieldModifier="private"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource DefaultStyle}"/>
+        <TextBox Name="_editableTextBox"
+                 x:FieldModifier="private"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Style="{StaticResource DefaultStyle}"/>
     </Grid>
 </UserControl>
