@@ -30,6 +30,9 @@ namespace TemzzzWpfControlsSDK
         public static readonly
             DependencyProperty IsReadOnlyTextBlockVisibleProperty;
 
+        public static readonly
+            DependencyProperty IsEditableTextBoxVisibleProperty;
+
         #endregion
 
         #region -- Constructors --
@@ -47,6 +50,10 @@ namespace TemzzzWpfControlsSDK
 
             IsReadOnlyTextBlockVisibleProperty = DependencyProperty.Register(
                 nameof(IsReadOnlyTextBlockVisible), typeof(bool),
+                typeof(RadioButtonSelector), new PropertyMetadata(true));
+
+            IsEditableTextBoxVisibleProperty = DependencyProperty.Register(
+                nameof(IsEditableTextBoxVisible), typeof(bool),
                 typeof(RadioButtonSelector), new PropertyMetadata(true));
         }
 
@@ -75,6 +82,12 @@ namespace TemzzzWpfControlsSDK
         {
             get => (bool)GetValue(IsReadOnlyTextBlockVisibleProperty);
             set => SetValue(IsReadOnlyTextBlockVisibleProperty, value);
+        }
+
+        public bool IsEditableTextBoxVisible
+        {
+            get => (bool)GetValue(IsEditableTextBoxVisibleProperty);
+            set => SetValue(IsEditableTextBoxVisibleProperty, value);
         }
 
         #endregion
