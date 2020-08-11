@@ -44,7 +44,8 @@ namespace TemzzzWpfControlsSDK
         {
             CheckedRadioButtonIndexProperty = DependencyProperty.Register(
                 nameof(CheckedRadioButtonIndex), typeof(int?),
-                typeof(RadioButtonSelector), new PropertyMetadata(null));
+                typeof(RadioButtonSelector), new PropertyMetadata(null,
+                    CheckedRadioButtonIndexChangedCallback));
 
             EditableTextProperty = DependencyProperty.Register(
                 nameof(EditableText), typeof(string),
@@ -153,12 +154,60 @@ namespace TemzzzWpfControlsSDK
             }
         }
 
+        private static void CheckedRadioButtonIndexChangedCallback(
+            DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue == e.NewValue)
+            {
+                return;
+            }
+
+            var radioButtonSelector = (RadioButtonSelector)sender;
+            var radioButtonsStackPanelChildren
+                = radioButtonSelector._radioButtonsStackPanel.Children;
+            var newCheckedRadioButtonIndex = (int?)e.NewValue;
+
+            if (newCheckedRadioButtonIndex == null)
+            {
+                foreach (RadioButton radioButton
+                    in radioButtonsStackPanelChildren)
+                {
+                    if (radioButton.IsChecked == true)
+                    {
+                        radioButton.IsChecked = false;
+                        break;
+                    }
+                }
+                return;
+            }
+
+            if (newCheckedRadioButtonIndex < 0
+                || (newCheckedRadioButtonIndex
+                    >= radioButtonsStackPanelChildren.Count))
+            {
+                throw new ArgumentException(
+                    "The value of checked radiobutton index must be null " +
+                    "or in range from 0 to " +
+                    $"{radioButtonsStackPanelChildren.Count - 1}, but it " +
+                    $"is {newCheckedRadioButtonIndex}.",
+                    nameof(newCheckedRadioButtonIndex));
+            }
+
+            var newCheckedRadioButton
+                = (RadioButton)radioButtonsStackPanelChildren[
+                    (int)newCheckedRadioButtonIndex];
+            if (newCheckedRadioButton.IsChecked != true)
+            {
+                newCheckedRadioButton.IsChecked = true;
+            }
+        }
+
         #endregion
 
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
-            _readOnlyTextBlock.Text =
-                _radioButtonToReadOnlyTextMap[(RadioButton)sender];
+            _readOnlyTextBlock.Text
+                = _radioButtonToReadOnlyTextMap[(RadioButton)sender];
         }
 
         private Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
