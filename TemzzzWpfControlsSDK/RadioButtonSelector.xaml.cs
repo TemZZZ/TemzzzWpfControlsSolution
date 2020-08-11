@@ -130,6 +130,7 @@ namespace TemzzzWpfControlsSDK
             }
             radioButtonsStackPanelChildren.Clear();
             radioButtonSelector._radioButtonToReadOnlyTextMap.Clear();
+            radioButtonSelector.CheckedRadioButtonIndex = null;
 
             var newRadioButtonTextToReadOnlyTextMap
                 = (List<(string, string)>)e.NewValue;
