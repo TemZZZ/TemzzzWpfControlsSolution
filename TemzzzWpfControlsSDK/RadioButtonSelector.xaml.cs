@@ -20,9 +20,9 @@ namespace TemzzzWpfControlsSDK
     /// </summary>
     public partial class RadioButtonSelector : UserControl
     {
-        #region -- Private dependency properties --
+        #region -- Dependency properties --
 
-        private static readonly
+        public static readonly
             DependencyProperty CheckedRadioButtonIndexProperty;
 
         public static readonly DependencyProperty EditableTextProperty;
