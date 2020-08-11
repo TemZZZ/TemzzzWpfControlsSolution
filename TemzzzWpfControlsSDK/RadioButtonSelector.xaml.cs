@@ -24,7 +24,11 @@ namespace TemzzzWpfControlsSDK
 
         private static readonly
             DependencyProperty CheckedRadioButtonIndexProperty;
+
         public static readonly DependencyProperty EditableTextProperty;
+
+        public static readonly
+            DependencyProperty IsReadOnlyTextBlockVisibleProperty;
 
         #endregion
 
@@ -40,6 +44,10 @@ namespace TemzzzWpfControlsSDK
                 nameof(EditableText), typeof(string),
                 typeof(RadioButtonSelector),
                 new PropertyMetadata(string.Empty));
+
+            IsReadOnlyTextBlockVisibleProperty = DependencyProperty.Register(
+                nameof(IsReadOnlyTextBlockVisible), typeof(bool),
+                typeof(RadioButtonSelector), new PropertyMetadata(true));
         }
 
         public RadioButtonSelector()
@@ -61,6 +69,12 @@ namespace TemzzzWpfControlsSDK
         {
             get => (string)GetValue(EditableTextProperty);
             set => SetValue(EditableTextProperty, value);
+        }
+
+        public bool IsReadOnlyTextBlockVisible
+        {
+            get => (bool)GetValue(IsReadOnlyTextBlockVisibleProperty);
+            set => SetValue(IsReadOnlyTextBlockVisibleProperty, value);
         }
 
         #endregion
