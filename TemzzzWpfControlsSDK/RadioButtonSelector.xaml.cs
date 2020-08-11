@@ -208,6 +208,17 @@ namespace TemzzzWpfControlsSDK
         {
             _readOnlyTextBlock.Text
                 = _radioButtonToReadOnlyTextMap[(RadioButton)sender];
+
+            for (int i = 0; i < _radioButtonsStackPanel.Children.Count; ++i)
+            {
+                var radioButton
+                    = (RadioButton)_radioButtonsStackPanel.Children[i];
+                if (radioButton.IsChecked == true)
+                {
+                    CheckedRadioButtonIndex = i;
+                    return;
+                }
+            }
         }
 
         private Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
