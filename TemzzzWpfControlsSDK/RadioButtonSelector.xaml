@@ -17,8 +17,6 @@
     <StackPanel>
         <StackPanel Name="_radioButtonsStackPanel"
                     x:FieldModifier="private"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="2"
                     VerticalAlignment="Center">
             <StackPanel.Resources>
                 <Style TargetType="RadioButton"
