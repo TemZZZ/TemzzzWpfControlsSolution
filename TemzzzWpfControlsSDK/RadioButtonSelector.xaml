@@ -37,6 +37,7 @@
                        Grid.Column="0"
                        VerticalAlignment="Center"
                        Style="{StaticResource DefaultStyle}"/>
+
             <TextBox Name="_editableTextBox"
                      x:FieldModifier="private"
                      Grid.Column="1"
@@ -44,7 +45,9 @@
                      Style="{StaticResource DefaultStyle}"
                      Text="{Binding RelativeSource={RelativeSource FindAncestor,
                         AncestorType={x:Type local:RadioButtonSelector}},
-                        Path=EditableText}"/>
+                        Path=EditableText,
+                        NotifyOnValidationError=True,
+                        ValidatesOnDataErrors=True}"/>
         </Grid>
     </StackPanel>
 </UserControl>
