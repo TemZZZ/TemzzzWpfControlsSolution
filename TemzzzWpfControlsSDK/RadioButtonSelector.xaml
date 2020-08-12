@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TemzzzWpfControlsSDK"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="275">
+             d:DesignHeight="30" d:DesignWidth="275">
 
     <UserControl.Resources>
         <Style x:Key="DefaultStyle">
@@ -14,16 +14,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
+    <StackPanel>
         <StackPanel Name="_radioButtonsStackPanel"
                     x:FieldModifier="private"
                     Grid.Row="0"
@@ -35,20 +26,25 @@
             </StackPanel.Resources>
         </StackPanel>
 
-        <TextBlock Name="_readOnlyTextBlock"
-                   x:FieldModifier="private"
-                   Grid.Row="1"
-                   Grid.Column="0"
-                   VerticalAlignment="Center"
-                   Style="{StaticResource DefaultStyle}"/>
-        <TextBox Name="_editableTextBox"
-                 x:FieldModifier="private"
-                 Grid.Row="1"
-                 Grid.Column="1"
-                 VerticalAlignment="Center"
-                 Style="{StaticResource DefaultStyle}"
-                 Text="{Binding RelativeSource={RelativeSource FindAncestor,
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="_readOnlyTextBlock"
+                       x:FieldModifier="private"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource DefaultStyle}"/>
+            <TextBox Name="_editableTextBox"
+                     x:FieldModifier="private"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Style="{StaticResource DefaultStyle}"
+                     Text="{Binding RelativeSource={RelativeSource FindAncestor,
                         AncestorType={x:Type local:RadioButtonSelector}},
                         Path=EditableText}"/>
-    </Grid>
+        </Grid>
+    </StackPanel>
 </UserControl>
