@@ -73,6 +73,7 @@ namespace TemzzzWpfControlsSDK
         public RadioButtonSelector()
         {
             InitializeComponent();
+            Validation.SetValidationAdornerSite(this, _editableTextBox);
         }
 
         #endregion
