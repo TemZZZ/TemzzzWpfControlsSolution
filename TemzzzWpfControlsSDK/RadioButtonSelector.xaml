@@ -46,9 +46,7 @@
                      Style="{StaticResource DefaultStyle}"
                      Text="{Binding RelativeSource={RelativeSource FindAncestor,
                         AncestorType={x:Type local:RadioButtonSelector}},
-                        Path=EditableText,
-                        NotifyOnValidationError=True,
-                        ValidatesOnDataErrors=True}"/>
+                        Path=EditableText}"/>
         </Grid>
     </StackPanel>
 </UserControl>
