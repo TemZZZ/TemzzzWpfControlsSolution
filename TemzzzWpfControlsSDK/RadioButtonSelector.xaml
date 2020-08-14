@@ -46,7 +46,9 @@
                      Style="{StaticResource DefaultStyle}"
                      Text="{Binding RelativeSource={RelativeSource FindAncestor,
                         AncestorType={x:Type local:RadioButtonSelector}},
-                        Path=EditableText}"/>
+                        Path=EditableText,
+                        UpdateSourceTrigger=PropertyChanged,
+                        Mode=TwoWay}"/>
         </Grid>
     </StackPanel>
 </UserControl>
