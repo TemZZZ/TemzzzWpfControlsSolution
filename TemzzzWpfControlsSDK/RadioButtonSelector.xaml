@@ -20,7 +20,10 @@
                     VerticalAlignment="Center">
             <StackPanel.Resources>
                 <Style TargetType="RadioButton"
-                       BasedOn="{StaticResource DefaultStyle}"/>
+                       BasedOn="{StaticResource DefaultStyle}">
+                    <EventSetter Event="Checked"
+                                 Handler="OnRadioButtonChecked"/>
+                </Style>
             </StackPanel.Resources>
         </StackPanel>
 

@@ -125,12 +125,6 @@ namespace TemzzzWpfControlsSDK
             var radioButtonsStackPanelChildren
                 = radioButtonSelector._radioButtonsStackPanel.Children;
 
-            foreach (RadioButton radioButton
-                in radioButtonsStackPanelChildren)
-            {
-                radioButton.Checked
-                    -= radioButtonSelector.OnRadioButtonChecked;
-            }
             radioButtonsStackPanelChildren.Clear();
             radioButtonSelector._radioButtonToReadOnlyTextMap.Clear();
             radioButtonSelector.CheckedRadioButtonIndex = null;
@@ -150,8 +144,6 @@ namespace TemzzzWpfControlsSDK
                 {
                     Content = radioButtonText
                 };
-                radioButton.Checked
-                    += radioButtonSelector.OnRadioButtonChecked;
                 radioButtonSelector._radioButtonToReadOnlyTextMap[
                     radioButton] = readOnlyText;
                 radioButtonsStackPanelChildren.Add(radioButton);
