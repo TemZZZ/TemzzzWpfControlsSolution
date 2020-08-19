@@ -20,6 +20,65 @@ namespace TemzzzWpfControlsSDK
     /// </summary>
     public partial class RadioButtonSelector : UserControl
     {
+        #region -- Private fields --
+
+        private readonly
+            Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
+                = new Dictionary<RadioButton, string>();
+
+        #endregion
+
+        #region -- Private methods --
+
+        /// <summary>
+        /// Обработчик выбора радиокнопки. Изменяет содержимое текстового
+        /// блока на текст, ассоциированный с выбранной радиокнопкой.
+        /// </summary>
+        /// <param name="sender">Объект, сгенерировавший событие выбора
+        /// радиокнопки</param>
+        /// <param name="e">Дополнительные данные события</param>
+        private void OnRadioButtonChecked(object sender, EventArgs e)
+        {
+            _readOnlyTextBlock.Text
+                = _radioButtonToReadOnlyTextMap[(RadioButton)sender];
+
+            for (int i = 0; i < _radioButtonsStackPanel.Children.Count; ++i)
+            {
+                var radioButton
+                    = (RadioButton)_radioButtonsStackPanel.Children[i];
+                if (radioButton.IsChecked == true)
+                {
+                    CheckedRadioButtonIndex = i;
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Устанавливает видимость элемента-экземпляра класса
+        /// <see cref="UIElement"/>. Если видимость устанавливается в false,
+        /// то видимость устанавливается в
+        /// <see cref="Visibility.Collapsed"/>, то есть элемент не будет
+        /// отображаться и не будет участвовать в разметке.
+        /// </summary>
+        /// <param name="uiElement">Элемент разметки</param>
+        /// <param name="isVisible">Статус видимости</param>
+        private static void SetUIElementVisibility(UIElement uiElement,
+            bool isVisible)
+        {
+            switch (isVisible)
+            {
+                case true:
+                    uiElement.Visibility = Visibility.Visible;
+                    break;
+                case false:
+                    uiElement.Visibility = Visibility.Collapsed;
+                    break;
+            }
+        }
+
+        #endregion
+
         #region -- Dependency properties --
 
         public static readonly
@@ -229,55 +288,5 @@ namespace TemzzzWpfControlsSDK
         }
 
         #endregion
-
-        /// <summary>
-        /// Обработчик выбора радиокнопки. Изменяет содержимое текстового
-        /// блока на текст, ассоциированный с выбранной радиокнопкой.
-        /// </summary>
-        /// <param name="sender">Объект, сгенерировавший событие выбора
-        /// радиокнопки</param>
-        /// <param name="e">Дополнительные данные события</param>
-        private void OnRadioButtonChecked(object sender, EventArgs e)
-        {
-            _readOnlyTextBlock.Text
-                = _radioButtonToReadOnlyTextMap[(RadioButton)sender];
-
-            for (int i = 0; i < _radioButtonsStackPanel.Children.Count; ++i)
-            {
-                var radioButton
-                    = (RadioButton)_radioButtonsStackPanel.Children[i];
-                if (radioButton.IsChecked == true)
-                {
-                    CheckedRadioButtonIndex = i;
-                    return;
-                }
-            }
-        }
-
-        private Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
-            = new Dictionary<RadioButton, string>();
-
-        /// <summary>
-        /// Устанавливает видимость элемента-экземпляра класса
-        /// <see cref="UIElement"/>. Если видимость устанавливается в false,
-        /// то видимость устанавливается в
-        /// <see cref="Visibility.Collapsed"/>, то есть элемент не будет
-        /// отображаться и не будет участвовать в разметке.
-        /// </summary>
-        /// <param name="uiElement">Элемент разметки</param>
-        /// <param name="isVisible">Статус видимости</param>
-        private static void SetUIElementVisibility(UIElement uiElement,
-            bool isVisible)
-        {
-            switch (isVisible)
-            {
-                case true:
-                    uiElement.Visibility = Visibility.Visible;
-                    break;
-                case false:
-                    uiElement.Visibility = Visibility.Collapsed;
-                    break;
-            }
-        }
     }
 }
