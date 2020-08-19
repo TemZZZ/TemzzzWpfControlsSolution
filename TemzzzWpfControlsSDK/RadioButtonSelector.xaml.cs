@@ -230,6 +230,13 @@ namespace TemzzzWpfControlsSDK
 
         #endregion
 
+        /// <summary>
+        /// Обработчик выбора радиокнопки. Изменяет содержимое текстового
+        /// блока на текст, ассоциированный с выбранной радиокнопкой.
+        /// </summary>
+        /// <param name="sender">Объект, сгенерировавший событие выбора
+        /// радиокнопки</param>
+        /// <param name="e">Дополнительные данные события</param>
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
             _readOnlyTextBlock.Text
