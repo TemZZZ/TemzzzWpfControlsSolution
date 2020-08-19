@@ -209,44 +209,22 @@ namespace TemzzzWpfControlsSDK
         private static void ReadOnlyTextBlockVisibilityChangedCallback(
             DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.OldValue == e.NewValue)
+            if (e.OldValue != e.NewValue)
             {
-                return;
-            }
-
-            var radioButtonSelector = (RadioButtonSelector)sender;
-            switch (e.NewValue)
-            {
-                case true:
-                    radioButtonSelector._readOnlyTextBlock.Visibility
-                        = Visibility.Visible;
-                    break;
-                case false:
-                    radioButtonSelector._readOnlyTextBlock.Visibility
-                        = Visibility.Collapsed;
-                    break;
+                SetUIElementVisibility(
+                    ((RadioButtonSelector)sender)._readOnlyTextBlock,
+                    (bool)e.NewValue);
             }
         }
 
         private static void EditableTextBoxVisibilityChangedCallback(
             DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.OldValue == e.NewValue)
+            if (e.OldValue != e.NewValue)
             {
-                return;
-            }
-
-            var radioButtonSelector = (RadioButtonSelector)sender;
-            switch (e.NewValue)
-            {
-                case true:
-                    radioButtonSelector._editableTextBox.Visibility
-                        = Visibility.Visible;
-                    break;
-                case false:
-                    radioButtonSelector._editableTextBox.Visibility
-                        = Visibility.Collapsed;
-                    break;
+                SetUIElementVisibility(
+                    ((RadioButtonSelector)sender)._editableTextBox,
+                    (bool)e.NewValue);
             }
         }
 
@@ -271,5 +249,28 @@ namespace TemzzzWpfControlsSDK
 
         private Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
             = new Dictionary<RadioButton, string>();
+
+        /// <summary>
+        /// Устанавливает видимость элемента-экземпляра класса
+        /// <see cref="UIElement"/>. Если видимость устанавливается в false,
+        /// то видимость устанавливается в
+        /// <see cref="Visibility.Collapsed"/>, то есть элемент не будет
+        /// отображаться и не будет участвовать в разметке.
+        /// </summary>
+        /// <param name="uiElement">Элемент разметки</param>
+        /// <param name="isVisible">Статус видимости</param>
+        private static void SetUIElementVisibility(UIElement uiElement,
+            bool isVisible)
+        {
+            switch (isVisible)
+            {
+                case true:
+                    uiElement.Visibility = Visibility.Visible;
+                    break;
+                case false:
+                    uiElement.Visibility = Visibility.Collapsed;
+                    break;
+            }
+        }
     }
 }
