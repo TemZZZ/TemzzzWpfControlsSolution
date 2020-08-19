@@ -99,6 +99,10 @@ namespace TemzzzWpfControlsSDK
 
         #region -- Constructors --
 
+        /// <summary>
+        /// Статический конструктор. В нем регистрируются свойства
+        /// зависимостей элемента <see cref="RadioButtonSelector"/>.
+        /// </summary>
         static RadioButtonSelector()
         {
             CheckedRadioButtonIndexProperty = DependencyProperty.Register(
@@ -129,6 +133,9 @@ namespace TemzzzWpfControlsSDK
                         RadioButtonTextToReadOnlyTextMapChangedCallback));
         }
 
+        /// <summary>
+        /// Создает экземпляр элемента <see cref="RadioButtonSelector"/>.
+        /// </summary>
         public RadioButtonSelector()
         {
             InitializeComponent();
