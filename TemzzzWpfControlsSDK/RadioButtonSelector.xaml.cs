@@ -16,7 +16,10 @@ using System.Windows.Shapes;
 namespace TemzzzWpfControlsSDK
 {
     /// <summary>
-    /// Interaction logic for RadioButtonSelector.xaml
+    /// Класс комбинированного элемента разметки, состоящего из набора
+    /// радиокнопок, текстового блока для отображения ассоциированного с
+    /// выбранной радиокнопкой текста и текстового поля для ввода данных
+    /// пользователем.
     /// </summary>
     public partial class RadioButtonSelector : UserControl
     {
