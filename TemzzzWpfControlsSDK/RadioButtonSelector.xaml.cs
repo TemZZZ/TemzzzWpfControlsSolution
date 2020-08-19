@@ -132,6 +132,12 @@ namespace TemzzzWpfControlsSDK
         public RadioButtonSelector()
         {
             InitializeComponent();
+
+            // Если пользователь вводит в текстовое поле строку, которую
+            // невозможно преобразовать в тип данных свойства, привязанного
+            // к свойству Text текстового поля, то подствечиваться красной
+            // рамкой будет только текстовое поле, а не весь элемент
+            // RadioButtonSelector.
             Validation.SetValidationAdornerSite(this, _editableTextBox);
         }
 
