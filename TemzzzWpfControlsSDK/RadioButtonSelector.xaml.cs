@@ -155,30 +155,54 @@ namespace TemzzzWpfControlsSDK
 
         #region -- Public properties --
 
+        /// <summary>
+        /// Позволяет задать или получить индекс выбранной радиокнопки (при
+        /// задании индекса выбирается соответствующая радиокнопка).
+        /// </summary>
         public int? CheckedRadioButtonIndex
         {
             get => (int?)GetValue(CheckedRadioButtonIndexProperty);
             set => SetValue(CheckedRadioButtonIndexProperty, value);
         }
 
+        /// <summary>
+        /// Позволяет задать или получить текст редактируемого текстового
+        /// поля.
+        /// </summary>
         public string EditableText
         {
             get => (string)GetValue(EditableTextProperty);
             set => SetValue(EditableTextProperty, value);
         }
 
+        /// <summary>
+        /// Позволяет установить видимость нередактируемого текстового блока
+        /// или получить его текущее состояние видимости.
+        /// </summary>
         public bool IsReadOnlyTextBlockVisible
         {
             get => (bool)GetValue(IsReadOnlyTextBlockVisibleProperty);
             set => SetValue(IsReadOnlyTextBlockVisibleProperty, value);
         }
 
+        /// <summary>
+        /// Позволяет установить видимость редактируемого текстового поля или
+        /// получить его текущее состояние видимости.
+        /// </summary>
         public bool IsEditableTextBoxVisible
         {
             get => (bool)GetValue(IsEditableTextBoxVisibleProperty);
             set => SetValue(IsEditableTextBoxVisibleProperty, value);
         }
 
+        /// <summary>
+        /// Позволяет задать список пар значений
+        /// "текст радиокнопки-текст текстового блока". На основании этого
+        /// списка добавляются радиокнопки с соответствующим текстом, и
+        /// каждой радиокнопке назначается ассоциированный с ней текст,
+        /// который будет отбражатся в нередактируемом текстовом блоке при ее
+        /// выборе.
+        /// </summary>
         public List<(string, string)> RadioButtonTextToReadOnlyTextMap
         {
             set => SetValue(RadioButtonTextToReadOnlyTextMapProperty, value);
