@@ -41,7 +41,7 @@ namespace TemzzzWpfControlsSDK
                     = (RadioButton)_radioButtonsStackPanel.Children[i];
                 if (radioButton.IsChecked == true)
                 {
-                    CheckedRadioButtonIndex = i;
+                    CheckedRadioButtonIndex = (uint?)i;
                     return;
                 }
             }
@@ -99,7 +99,7 @@ namespace TemzzzWpfControlsSDK
         static RadioButtonSelector()
         {
             CheckedRadioButtonIndexProperty = DependencyProperty.Register(
-                nameof(CheckedRadioButtonIndex), typeof(int?),
+                nameof(CheckedRadioButtonIndex), typeof(uint?),
                 typeof(RadioButtonSelector), new PropertyMetadata(null,
                     CheckedRadioButtonIndexChangedCallback));
 
@@ -149,9 +149,9 @@ namespace TemzzzWpfControlsSDK
         /// Позволяет задать или получить индекс выбранной радиокнопки (при
         /// задании индекса выбирается соответствующая радиокнопка).
         /// </summary>
-        public int? CheckedRadioButtonIndex
+        public uint? CheckedRadioButtonIndex
         {
-            get => (int?)GetValue(CheckedRadioButtonIndexProperty);
+            get => (uint?)GetValue(CheckedRadioButtonIndexProperty);
             set => SetValue(CheckedRadioButtonIndexProperty, value);
         }
 
