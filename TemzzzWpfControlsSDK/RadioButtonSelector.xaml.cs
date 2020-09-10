@@ -250,7 +250,7 @@ namespace TemzzzWpfControlsSDK
             var radioButtonSelector = (RadioButtonSelector)sender;
             var radioButtonsStackPanelChildren
                 = radioButtonSelector._radioButtonsStackPanel.Children;
-            var newCheckedRadioButtonIndex = (int?)e.NewValue;
+            var newCheckedRadioButtonIndex = (uint?)e.NewValue;
 
             if (newCheckedRadioButtonIndex == null)
             {
