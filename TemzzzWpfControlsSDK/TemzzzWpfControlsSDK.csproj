@@ -52,6 +52,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="CustomDataGrid.cs" />
     <Compile Include="RadioButtonSelector.xaml.cs">
       <DependentUpon>RadioButtonSelector.xaml</DependentUpon>
       <SubType>Code</SubType>
