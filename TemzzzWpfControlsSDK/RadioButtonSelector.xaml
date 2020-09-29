@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="TemzzzWpfControlsSDK.RadioButtonSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TemzzzWpfControlsSDK"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="275">
+
+    <UserControl.Resources>
+        <Style x:Key="DefaultStyle">
+            <Setter Property="Control.Margin"
+                    Value="3"/>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <StackPanel Name="_radioButtonsStackPanel"
+                    x:FieldModifier="private"
+                    VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="RadioButton"
+                       BasedOn="{StaticResource DefaultStyle}">
+                    <EventSetter Event="Checked"
+                                 Handler="OnRadioButtonChecked"/>
+                </Style>
+            </StackPanel.Resources>
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="_readOnlyTextBlock"
+                       x:FieldModifier="private"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource DefaultStyle}"/>
+
+            <TextBox Name="_editableTextBox"
+                     x:FieldModifier="private"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Style="{StaticResource DefaultStyle}"
+                     Text="{Binding RelativeSource={RelativeSource FindAncestor,
+                        AncestorType={x:Type local:RadioButtonSelector}},
+                        Path=EditableText,
+                        UpdateSourceTrigger=PropertyChanged,
+                        Mode=TwoWay}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>
