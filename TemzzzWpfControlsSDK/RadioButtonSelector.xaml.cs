@@ -15,8 +15,8 @@ namespace TemzzzWpfControlsSDK
     {
         #region -- Private fields --
 
-        private readonly
-            Dictionary<RadioButton, string> _radioButtonToReadOnlyTextMap
+        private readonly Dictionary<RadioButton, string>
+            _radioButtonToReadOnlyTextDictionary
                 = new Dictionary<RadioButton, string>();
 
         #endregion
@@ -32,8 +32,8 @@ namespace TemzzzWpfControlsSDK
         /// <param name="e">Дополнительные данные события</param>
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
-            _readOnlyTextBlock.Text
-                = _radioButtonToReadOnlyTextMap[(RadioButton)sender];
+            _readOnlyTextBlock.Text = _radioButtonToReadOnlyTextDictionary[
+                (RadioButton)sender];
 
             for (int i = 0; i < _radioButtonsStackPanel.Children.Count; ++i)
             {
@@ -86,7 +86,7 @@ namespace TemzzzWpfControlsSDK
             DependencyProperty IsEditableTextBoxVisibleProperty;
 
         public static readonly
-            DependencyProperty RadioButtonTextToReadOnlyTextMapProperty;
+            DependencyProperty RadioButtonTextToReadOnlyTextTupleProperty;
 
         #endregion
 
@@ -118,12 +118,12 @@ namespace TemzzzWpfControlsSDK
                 typeof(RadioButtonSelector), new PropertyMetadata(true,
                     EditableTextBoxVisibilityChangedCallback));
 
-            RadioButtonTextToReadOnlyTextMapProperty = DependencyProperty
-                .Register(nameof(RadioButtonTextToReadOnlyTextMap),
+            RadioButtonTextToReadOnlyTextTupleProperty = DependencyProperty
+                .Register(nameof(RadioButtonTextToReadOnlyTextTuple),
                     typeof(List<(string, string)>),
                     typeof(RadioButtonSelector),
                     new PropertyMetadata(new List<(string, string)>(),
-                        RadioButtonTextToReadOnlyTextMapChangedCallback));
+                        RadioButtonTextToReadOnlyTextTupleChangedCallback));
         }
 
         /// <summary>
@@ -193,17 +193,20 @@ namespace TemzzzWpfControlsSDK
         /// который будет отбражатся в нередактируемом текстовом блоке при ее
         /// выборе.
         /// </summary>
-        public List<(string, string)> RadioButtonTextToReadOnlyTextMap
+        public List<(string, string)> RadioButtonTextToReadOnlyTextTuple
         {
-            set => SetValue(RadioButtonTextToReadOnlyTextMapProperty, value);
+            set => SetValue(RadioButtonTextToReadOnlyTextTupleProperty,
+                value);
         }
 
         #endregion
 
         #region -- Dependency property changed callbacks --
 
-        private static void RadioButtonTextToReadOnlyTextMapChangedCallback(
-            DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void
+            RadioButtonTextToReadOnlyTextTupleChangedCallback(
+                DependencyObject sender,
+                DependencyPropertyChangedEventArgs e)
         {
             if (e.OldValue == e.NewValue)
             {
@@ -215,25 +218,25 @@ namespace TemzzzWpfControlsSDK
                 = radioButtonSelector._radioButtonsStackPanel.Children;
 
             radioButtonsStackPanelChildren.Clear();
-            radioButtonSelector._radioButtonToReadOnlyTextMap.Clear();
+            radioButtonSelector._radioButtonToReadOnlyTextDictionary.Clear();
             radioButtonSelector.CheckedRadioButtonIndex = null;
 
-            var newRadioButtonTextToReadOnlyTextMap
+            var newRadioButtonTextToReadOnlyTextTuples
                 = (List<(string, string)>)e.NewValue;
-            if (newRadioButtonTextToReadOnlyTextMap is null
-                || newRadioButtonTextToReadOnlyTextMap.Count == 0)
+            if (newRadioButtonTextToReadOnlyTextTuples is null
+                || newRadioButtonTextToReadOnlyTextTuples.Count == 0)
             {
                 return;
             }
 
             foreach (var (radioButtonText, readOnlyText)
-                in newRadioButtonTextToReadOnlyTextMap)
+                in newRadioButtonTextToReadOnlyTextTuples)
             {
                 var radioButton = new RadioButton
                 {
                     Content = radioButtonText
                 };
-                radioButtonSelector._radioButtonToReadOnlyTextMap[
+                radioButtonSelector._radioButtonToReadOnlyTextDictionary[
                     radioButton] = readOnlyText;
                 radioButtonsStackPanelChildren.Add(radioButton);
             }
