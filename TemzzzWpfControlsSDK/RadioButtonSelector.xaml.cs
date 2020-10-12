@@ -86,7 +86,7 @@ namespace TemzzzWpfControlsSDK
             DependencyProperty IsEditableTextBoxVisibleProperty;
 
         public static readonly
-            DependencyProperty RadioButtonTextToReadOnlyTextTupleProperty;
+            DependencyProperty RadioButtonTextToReadOnlyTextTuplesProperty;
 
         #endregion
 
@@ -118,8 +118,8 @@ namespace TemzzzWpfControlsSDK
                 typeof(RadioButtonSelector), new PropertyMetadata(true,
                     EditableTextBoxVisibilityChangedCallback));
 
-            RadioButtonTextToReadOnlyTextTupleProperty = DependencyProperty
-                .Register(nameof(RadioButtonTextToReadOnlyTextTuple),
+            RadioButtonTextToReadOnlyTextTuplesProperty = DependencyProperty
+                .Register(nameof(RadioButtonTextToReadOnlyTextTuples),
                     typeof(List<(string, string)>),
                     typeof(RadioButtonSelector),
                     new PropertyMetadata(new List<(string, string)>(),
@@ -193,9 +193,9 @@ namespace TemzzzWpfControlsSDK
         /// который будет отбражатся в нередактируемом текстовом блоке при ее
         /// выборе.
         /// </summary>
-        public List<(string, string)> RadioButtonTextToReadOnlyTextTuple
+        public List<(string, string)> RadioButtonTextToReadOnlyTextTuples
         {
-            set => SetValue(RadioButtonTextToReadOnlyTextTupleProperty,
+            set => SetValue(RadioButtonTextToReadOnlyTextTuplesProperty,
                 value);
         }
 
